@@ -81,11 +81,11 @@ export const USER_TYPES = {
 // Route Paths
 export const ROUTES = {
   HOME: '/',
-  LOGIN: '/auth/login',         // Updated path
-  REGISTER: '/auth/register',   // Updated path
-  VERIFY_EMAIL: '/auth/verify-otp', // Updated path
-  FORGOT_PASSWORD: '/auth/forgot-password', // Updated path
-  RESET_PASSWORD: '/auth/reset-password',   // Updated path
+  LOGIN: '/auth/login',         
+  REGISTER: '/auth/register',   
+  VERIFY_EMAIL: '/auth/verify-otp', 
+  FORGOT_PASSWORD: '/auth/forgot-password', 
+  RESET_PASSWORD: '/auth/reset-password',   
 
   // Google Auth
   GOOGLE_CALLBACK: '/auth/google-callback',

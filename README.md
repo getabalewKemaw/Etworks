@@ -1,292 +1,107 @@
-# HireNest - Job Portal Frontend
+# HireNest / JobSphere
+This README is shared by both the frontend and backend projects.
 
-A modern, production-ready React 19 frontend for the HireNest job portal platform. Built with security, scalability, and best practices in mind.
+If you are in the frontend repo, see `C:\Users\Hp\Desktop\HireNestBackend\HireNest`.
+If you are in the backend repo, see `C:\Users\Hp\Desktop\HireNestBackend\Jobsphere\jobSite`.
 
-## 🚀 Tech Stack
+HireNest is the React frontend. JobSphere is the Spring Boot backend. Together they implement a job portal with seeker, employer, and admin flows.
 
-- **React 19** - Latest React with modern hooks
-- **React Router DOM** - Client-side routing
-- **Zustand** - Lightweight state management
-- **Axios** - HTTP client with interceptors
-- **Tailwind CSS** - Utility-first CSS framework
-- **Vite** - Fast build tool and dev server
+**What’s implemented (confirmed in code)**
+- Authentication: email/password registration, OTP verification, login, refresh, logout, password reset.
+- Admin authentication: admin login + OTP verification, refresh, logout.
+- Google OAuth: login with role selection and callback handling.
+- Role-based access: seeker, employer, admin protected routes.
+- Jobs: create, list with filters, update, deactivate, status updates, likes, saved jobs.
+- Applications: apply, list by job, list my applications, update status, check already applied.
+- Seeker profile: basic info, profile image, address, bio, skills, sector, tags, social links, projects, CV details.
+- CV builder: template listing, auto-fill from profile, preview, PDF download.
+- Employer: company profile + logo upload, company verification workflow, employer analytics stats.
+- Admin: user management, CV template management, company verification review, analytics stats.
+- Job alerts and matching: alerts CRUD, auto-sync with profile, matched jobs endpoint, recommended candidates.
+- Payments: Chapa integration for job posting payments, verification, history, webhook.
+- Notifications: list, unread count, mark read, test notification endpoint.
+- AI assistant: `/api/v1/ai/chat` and the Ema chat widget on the frontend.
 
-## 🎨 Design System
+Some UI routes are placeholders (see `C:\Users\Hp\Desktop\HireNestBackend\HireNest\src\App.jsx` where `PlaceholderPage` is used).
 
-### Brand Colors
-- **Primary (Deep Navy)**: `#0B1C2D` - Trust & Authority
-- **Secondary (Royal Blue)**: `#2563EB` - Action & Tech
-- **Accent (Emerald Green)**: `#10B981` - Success & Hiring
-- **Warning (Amber)**: `#F59E0B`
-- **Error (Soft Red)**: `#EF4444`
-- **Background**: `#F8FAFC`
+**Tech Stack**
+- Frontend: React 19, Vite, Tailwind CSS, React Router, Zustand, Axios.
+- Backend: Spring Boot 3.5.8, Java 21, PostgreSQL, Flyway, Spring Security, JWT, OAuth2, OpenAPI (springdoc), OpenPDF.
+- Integrations: Brevo (email), Cloudinary (media), Chapa (payments), Google OAuth, Gemini (AI).
 
-### Typography
-- **Primary Font**: Inter - Clean, modern, excellent readability
-- **Heading Font**: Plus Jakarta Sans - Premium feel for headings
-
-## 📁 Project Structure
-
-```
-src/
-├── components/          # Reusable UI components
-│   ├── Button.jsx
-│   ├── Input.jsx
-│   ├── Alert.jsx
-│   ├── Navbar.jsx
-│   ├── Footer.jsx
-│   └── ProtectedRoute.jsx
-├── pages/              # Page-level components
-│   ├── LandingPage.jsx
-│   ├── LoginPage.jsx
-│   ├── RegisterPage.jsx
-│   ├── VerifyEmailPage.jsx
-│   └── DashboardPage.jsx
-├── features/           # Feature-specific components
-│   └── auth/
-│       ├── LoginForm.jsx
-│       ├── RegisterForm.jsx
-│       └── VerifyEmailForm.jsx
-├── services/           # API services
-│   ├── api.js          # Axios instance with interceptors
-│   └── authService.js  # Authentication API calls
-├── store/              # Zustand stores
-│   └── authStore.js    # Authentication state
-├── utils/              # Utility functions
-│   ├── validation.js   # Form validation
-│   └── tokenUtils.js   # JWT token handling
-├── config/             # Configuration
-│   └── constants.js    # App constants
-├── App.jsx             # Main app component
-├── main.jsx            # Entry point
-└── index.css           # Global styles
-```
-
-## 🔐 Security Features
-
-### Token Management
-- **Access tokens** stored in memory only (never localStorage)
-- **Refresh tokens** in HttpOnly cookies (backend managed)
-- Automatic token refresh on 401 responses
-- Token expiration checking
-
-### Input Validation
-- Client-side validation for all forms
-- XSS prevention through input sanitization
-- CSRF protection via cookies
-- Field-level and form-level error handling
-
-### Route Protection
-- Protected routes with authentication check
-- Role-based access control (RBAC)
-- Automatic redirect to login for unauthorized access
-
-## 🚦 Getting Started
-
-### Prerequisites
-- Node.js 18+ and npm
-- Backend API running on `http://localhost:8080`
-
-### Installation
-
-1. Clone the repository
+**Local Setup**
+Backend (JobSphere):
 ```bash
-cd HireNest
+cd C:\Users\Hp\Desktop\HireNestBackend\Jobsphere\jobSite
+mvn spring-boot:run
 ```
 
-2. Install dependencies
+Frontend (HireNest):
 ```bash
+cd C:\Users\Hp\Desktop\HireNestBackend\HireNest
 npm install
-```
-
-3. Configure environment variables
-```bash
-cp .env.example .env
-```
-
-Edit `.env`:
-```env
-VITE_API_BASE_URL=http://localhost:8080
-VITE_ENV=development
-```
-
-4. Start development server
-```bash
 npm run dev
 ```
 
-The app will be available at `http://localhost:5173`
+Frontend runs on `http://localhost:5173`. Backend runs on `http://localhost:8080`.
 
-### Build for Production
+**Environment Variables**
+Frontend (`C:\Users\Hp\Desktop\HireNestBackend\HireNest\.env`):
 
-```bash
-npm run build
-```
-
-Preview production build:
-```bash
-npm run preview
-```
-
-## 🎯 Features
-
-### Authentication System
-- ✅ User registration with email verification
-- ✅ Login with JWT tokens
-- ✅ Email verification with OTP
-- ✅ Password reset flow
-- ✅ Automatic token refresh
-- ✅ Secure logout
-- ✅ Role-based dashboards (Admin, Employer, Job Seeker)
-
-### User Experience
-- ✅ Responsive design (mobile-first)
-- ✅ Loading states for all async operations
-- ✅ Form validation with real-time feedback
-- ✅ Error handling with user-friendly messages
-- ✅ Accessible forms (ARIA labels, keyboard navigation)
-- ✅ Clean, premium UI design
-
-## 🔌 API Integration
-
-### Base Configuration
-```javascript
-// Configured in src/services/api.js
-baseURL: 'http://localhost:8080'
-timeout: 30000ms
-withCredentials: true (for cookies)
-```
-
-### Endpoints Used
-- `POST /api/v1/auth/register` - User registration
-- `POST /api/v1/auth/verify-otp` - Email verification
-- `POST /api/v1/auth/login` - User login
-- `POST /api/v1/auth/logout` - User logout
-- `POST /api/v1/auth/refresh` - Token refresh
-- `POST /api/v1/auth/forgot-password` - Request password reset
-- `POST /api/v1/auth/verify-reset-otp` - Verify reset OTP
-- `POST /api/v1/auth/reset-password` - Reset password
-
-### Request Interceptors
-- Automatically adds `Authorization: Bearer <token>` header
-- Checks token expiration before requests
-
-### Response Interceptors
-- Handles 401 errors with automatic token refresh
-- Redirects to login on authentication failure
-- Centralized error handling
-
-## 🎨 Component Usage
-
-### Button Component
-```jsx
-import Button from './components/Button';
-
-<Button 
-  variant="primary"  // primary, secondary, outline, danger, success
-  size="md"          // sm, md, lg
-  loading={false}
-  disabled={false}
-  fullWidth={false}
-  onClick={handleClick}
->
-  Click Me
-</Button>
-```
-
-### Input Component
-```jsx
-import Input from './components/Input';
-
-<Input
-  label="Email"
-  type="email"
-  name="email"
-  value={email}
-  onChange={handleChange}
-  onBlur={handleBlur}
-  error={errors.email}
-  placeholder="you@example.com"
-  required
-/>
-```
-
-### Alert Component
-```jsx
-import Alert from './components/Alert';
-
-<Alert
-  type="success"  // success, error, warning, info
-  message="Operation successful!"
-  onClose={() => setAlert(null)}
-  dismissible={true}
-/>
-```
-
-## 🛡️ Best Practices Implemented
-
-### Code Quality
-- ✅ Functional components with hooks
-- ✅ Clean, readable code with meaningful names
-- ✅ No magic numbers (constants file)
-- ✅ Proper error boundaries
-- ✅ Consistent code formatting
-
-### Performance
-- ✅ Lazy loading for routes (can be added)
-- ✅ Optimized re-renders
-- ✅ Proper dependency arrays in useEffect
-- ✅ Memoization where needed
-
-### Accessibility
-- ✅ Semantic HTML
-- ✅ ARIA labels and roles
-- ✅ Keyboard navigation support
-- ✅ Focus management
-- ✅ Screen reader friendly
-
-### Security
-- ✅ XSS prevention
-- ✅ CSRF protection
-- ✅ Secure token storage
-- ✅ Input sanitization
-- ✅ No sensitive data in URLs
-
-## 🧪 Testing (To Be Added)
-
-Recommended testing setup:
-- **Vitest** - Unit testing
-- **React Testing Library** - Component testing
-- **Playwright** - E2E testing
-
-## 📝 Environment Variables
-
-| Variable | Description | Default |
-|----------|-------------|---------|
-| `VITE_API_BASE_URL` | Backend API URL | `http://localhost:8080` |
+| Variable | Description | Example |
+|---|---|---|
+| `VITE_API_BASE_URL` | Backend base URL | `http://localhost:8080` |
 | `VITE_ENV` | Environment | `development` |
 
-## 🤝 Contributing
+Backend (`C:\Users\Hp\Desktop\HireNestBackend\Jobsphere\jobSite\src\main\resources\application.properties`):
 
-1. Follow the existing code structure
-2. Use the established design system
-3. Write clean, documented code
-4. Test all features before committing
-5. Follow security best practices
+| Variable | Description |
+|---|---|
+| `DB_URL` | PostgreSQL JDBC URL |
+| `DB_USERNAME` | DB username |
+| `DB_PASSWORD` | DB password |
+| `JWT_SECRET` | JWT signing secret |
+| `GOOGLE_CLIENT_ID` | Google OAuth client id |
+| `GOOGLE_CLIENT_SECRET` | Google OAuth client secret |
+| `BREVO_SMTP_USERNAME` | Brevo SMTP username |
+| `BREVO_SMTP_KEY` | Brevo SMTP key |
+| `GEMINI_API_KEY` | Gemini API key |
 
-## 📄 License
+Note: Chapa and Cloudinary keys are currently set directly in `application.properties`. For production, move them to environment variables.
 
-This project is part of the HireNest platform.
+**API Overview (selected)**
+- Auth: `/api/v1/auth/*`, `/api/v1/admin/auth/*`
+- Jobs: `/api/v1/jobs`, `/api/v1/jobs/{id}`, `/api/v1/jobs/{id}/like`, `/api/v1/jobs/saved`
+- Applications: `/api/v1/applications`
+- Seeker profile: `/api/v1/seekers/profile` and `/api/v1/seekers/profile/details/*`
+- Employer: `/api/v1/company-profile`, `/api/v1/employer/verification`, `/api/v1/employer/analytics/stats`
+- Admin: `/api/v1/admin/users`, `/api/v1/admin/cv-templates`, `/api/v1/admin/company-verifications`, `/api/v1/admin/analytics/stats`
+- CV builder: `/api/v1/cv-builder/*`
+- Payments: `/api/v1/payments/*`
+- Notifications: `/api/v1/notifications/*`
+- AI: `/api/v1/ai/chat`
 
-## 🔗 Related
+**Screenshots**
+Home page
+<img width="811" height="318" alt="image" src="https://github.com/user-attachments/assets/3a46856b-e23a-40c8-a6b9-12266aff6cad" />
 
-- Backend API: Spring Boot application on port 8080
-- Database: PostgreSQL with Flyway migrations
+User Login page
+<img width="800" height="304" alt="image" src="https://github.com/user-attachments/assets/8824eef6-a944-41c4-9c5c-123f844ec29a" />
 
-## 📞 Support
+Admin Login page
+<img width="808" height="297" alt="image" src="https://github.com/user-attachments/assets/71d72f19-1d1f-4438-a1c2-e70e1ed788d1" />
 
-For issues or questions, please contact the development team.
+Seeker Dashboard
+<img width="803" height="292" alt="image" src="https://github.com/user-attachments/assets/2f6a271d-0263-4aa2-a4c7-4d6371de4d3f" />
 
----
+Employer Dashboard
+<img width="777" height="294" alt="image" src="https://github.com/user-attachments/assets/6c93c338-c51c-435b-8cbc-7fdef9f90201" />
 
-Built with ❤️ using React 19 and modern web technologies
+Admin Dashboard
+<img width="766" height="301" alt="image" src="https://github.com/user-attachments/assets/2a36fef0-5a7d-42b9-8f9b-0b514d3e0e3f" />
+
+Job management page
+<img width="614" height="383" alt="image_2025-12-24_01-37-32" src="https://github.com/user-attachments/assets/8a07ab62-4e10-42c8-bc62-6e07fa3b85fe" />
+
+Payment page
+<img width="737" height="427" alt="image_2025-12-24_03-14-30" src="https://github.com/user-attachments/assets/da408ee1-7d91-428b-b3a1-a683ec30675e" />

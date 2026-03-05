@@ -29,9 +29,7 @@ const LoginPage = () => {
     password: false,
   });
 
-  /* =========================
-     LIVE CHANGE HANDLER
-  ========================== */
+
   const handleChange = (e) => {
     const { name, value } = e.target;
 
@@ -50,9 +48,7 @@ const LoginPage = () => {
     }
   };
 
-  /* =========================
-     BLUR VALIDATION
-  ========================== */
+
   const handleBlur = (e) => {
     const { name, value } = e.target;
 
@@ -67,9 +63,7 @@ const LoginPage = () => {
     }));
   };
 
-  /* =========================
-     SUBMIT
-  ========================== */
+
   const handleSubmit = async (e) => {
     e.preventDefault();
 
@@ -82,7 +76,7 @@ const LoginPage = () => {
     setTouched({ email: true, password: true });
 
     if (Object.values(errors).some(Boolean)) return;
-
+ 
     try {
       await login(formData);
 

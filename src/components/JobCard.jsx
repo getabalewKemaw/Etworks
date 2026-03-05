@@ -76,7 +76,7 @@ const JobCard = ({ job }) => {
     const checkSaveStatus = async () => {
         try {
             const saved = await savedJobService.isSaved(id);
-            setIsSaved(saved);
+        setIsSaved(saved);
         } catch (error) {
             console.error('Error checking save status:', error);
         }

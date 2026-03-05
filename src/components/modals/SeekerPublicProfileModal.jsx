@@ -284,5 +284,4 @@ const SeekerPublicProfileModal = ({ isOpen, onClose, seekerId }) => {
         </div>
     );
 };
-
 export default SeekerPublicProfileModal;
