@@ -14,7 +14,7 @@ const CTASection = () => {
 
                 <div className="relative z-10">
                     <h2 className="text-4xl md:text-6xl font-serif font-black text-white mb-8 leading-tight">
-                        Ready to jumpstart <br /> your <span className="text-black italic">career?</span>
+                        Ready to jumpstart <br /> your <span className="text-black dark:text-white italic">career?</span>
                     </h2>
                     <p className="text-xl md:text-2xl text-blue-100/60 mb-12 max-w-3xl mx-auto font-serif leading-relaxed">
                         Join thousands of professionals finding their dream jobs on HireNest today.

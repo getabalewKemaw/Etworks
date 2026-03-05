@@ -127,6 +127,8 @@ function AppContent() {
         <Routes>
           {/* Public Routes */}
           <Route path={ROUTES.HOME} element={<LandingPage />} />
+         
+
           <Route path={ROUTES.LOGIN} element={<LoginPage />} />
           <Route path={ROUTES.REGISTER} element={<RegisterPage />} />
           <Route path={ROUTES.VERIFY_EMAIL} element={<VerifyOtpPage />} />
@@ -142,7 +144,7 @@ function AppContent() {
           {/* Payment Routes */}
           <Route path="/payment/callback" element={<PaymentCallbackPage />} />
 
-          {/* Protected Routes - General Dashboard */}
+       
           <Route path={ROUTES.DASHBOARD} element={<ProtectedRoute><DashboardLayout><DashboardPage /></DashboardLayout></ProtectedRoute>} />
           <Route path="/settings" element={<ProtectedRoute><PlaceholderPage title="Settings" /></ProtectedRoute>} />
           <Route path="/messages" element={<ProtectedRoute><PlaceholderPage title="Messages" /></ProtectedRoute>} />
